@@ -1,0 +1,49 @@
+The coin change problem is addressing Dynamic Programming hence dp for the initailized array. 
+This problem is an example in the field of algorithms and computer science, it is about optimiazation and combinatorial problems.
+The goal is to find the minimum number of coins that you need to make up a certain amount of money from a given set of coins that you need to make up a total amount of money from a given set of coin denominations.
+
+
+Key Aspects to the Algorithm:
+
+Subproblem Optimization: Dynamic programming solves problems by combining the soultions to subproblems. For the coin change problem, 
+it breaks down the target amount into smaller amounts and finds the minimum number of coins required for these smaller amounts.
+This process is repeated iteratively, building up the solution for the entire amount.
+
+Memoization(Tabulation): The algorithm uses an array(often reffered to as the DP table) to store the minimum number of coins needed for each amount from 0 up to the target amount. This is called Tabulation,
+it makes sure that each subproblem is only solved once, saving time and comptational resources.
+
+Bottom-Up Approach: Starting from the smallest sub problem (an amount of 0, which means 0 coins), The algo works its way up to the target amount. 
+For each amount, it considers each coin denomination and updates the DP table with minimum number of coins needed.
+
+Optimal Substructure and Overlapping Subproblems: The coin change problem shows both optimal substrcture (the optimal solution to the problem contains the optimal solutions to subproblems)
+and overlapping subproblems(the same subproblems are solved multiple times), Dynamic Programming is well-suited for problems with these kinds of characteristics.
+
+
+Time complexity for Coin Change Problem:
+
+There are two main factors: the amount of money (A) and the number of different coin denominations (D)
+
+Dynamic Programming Approach
+
+In the dynamic programming solution, we iterate over eacha mount from 1 to A (amount of money) for each amount, we iterate over each of the D (coin denominations.) This nested iteration gives us a total of
+A x D iterations.
+
+For each iteration, we perform a constant amount of work, mainly updating the DP talbe with the minimum number of coins needed for the current amount. So, to show overall time complexity time complexity we get
+O(A x D)
+
+
+
+But why is it O(A x D)?
+
+Amount Iteration (A): We have to compute the minimum number of coins for every value from 1 to A, so this means the algorithm has to perform some operations for each of these values, directly proportional to
+the amount A.
+
+Denomnination Iteration (D): For each amount, the algorithm checks each coin denomination to find the minimum number of coins required. 
+This adds a factor of D to the complexity, as this check is done for each of the D denominations.
+
+
+Practical implecations: 
+
+The O(A x D) time complexity lets us know that the algorithms performance will degrade linearly with an increase in the amount of money and also inearly with an increase in the number of coin denominations.
+For small to moderate values of A and D, my apprach is effective. However, for very large amounts or very large number of denominations, the runtime could be signifigcant, showing the importance considering 
+the specific context in which we are applying solution.s

@@ -1,0 +1,55 @@
+Problem Statement
+Given a list of coin denominations coins and a total amount of money amount, calculate the fewest number of coins needed to make up that amount. If it's not possible to make up the amount with the given coin denominations, return -1.
+
+Approach: Dynamic Programming (Bottom-Up)
+Initialization:
+
+Create an array dp of size amount + 1 to store the minimum coins needed for every amount from 0 to amount. Initialize dp[0] to 0 because the minimum coins needed to make up an amount of 0 is 0.
+Initialize the rest of the dp array with a large number (e.g., amount + 1) to symbolize that those amounts have not yet been computed.
+Filling the dp Array:
+
+For each amount from 1 to amount (inclusive), do the following:
+For each coin denomination in coins, if the coin value is less than or equal to the current amount:
+Update dp[currentAmount] with the minimum of dp[currentAmount] and 1 + dp[currentAmount - coinValue].
+This step represents comparing the current minimum coins needed for currentAmount with the coins needed if we were to use this particular coin denomination.
+Result:
+
+After filling the dp array, if dp[amount] is still the initial large number (amount + 1), it means it's impossible to make up the amount with the given denominations, so return -1.
+Otherwise, return dp[amount] as the fewest number of coins needed.
+
+
+Initialization:
+
+Create an array dp of length amount + 1 (in cents to maintain consistency) and initialize it with amount + 1. This represents the minimum coins needed for every amount from 0 to amount. dp[0] is set to 0 because no coins are needed for an amount of $0.
+Defining Coin Denominations:
+
+Create an array coins representing all US denominations in cents: [1, 5, 10, 25, 50, 100, 200, 500, 1000, 2000, 5000, 10000].
+Filling the dp Array:
+
+Loop through each amount from 1 to amount (inclusive). For each currentAmount in this range:
+Iterate over each coinValue in the coins array. For each coin:
+If the coinValue is less than or equal to the currentAmount, update dp[currentAmount]:
+dp[currentAmount] = min(dp[currentAmount], 1 + dp[currentAmount - coinValue])
+This step tries every denomination for each amount and picks the minimum number of coins required.
+Extracting the Result:
+
+If dp[amount] has not changed from its initial value (amount + 1), return -1 indicating it's impossible to form the amount with the given denominations.
+Otherwise, return dp[amount] as the minimum number of coins needed to form the amount.
+
+
+Example:
+
+function coinChangeForAllUSD(amount):
+    dp = array of length (amount + 1), filled with (amount + 1)
+    dp[0] = 0
+    coins = [1, 5, 10, 25, 50, 100, 200, 500, 1000, 2000, 5000, 10000]  // US denominations in cents
+
+    for currentAmount from 1 to amount:
+        for coinValue in coins:
+            if coinValue <= currentAmount:
+                dp[currentAmount] = min(dp[currentAmount], 1 + dp[currentAmount - coinValue])
+
+    if dp[amount] > amount:
+        return -1
+    else:
+        return dp[amount]
